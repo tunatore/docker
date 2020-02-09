@@ -1,0 +1,33 @@
+version: '2'
+
+services:
+
+  creditlimits:
+    build: ./creditlimits/
+    container_name: creditlimits
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - "8080:8080"
+    links:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/test?autoReconnect=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: test
+      SPRING_DATASOURCE_PASSWORD: test
+    entrypoint: ["./wait-for-it.sh", "mysqldb:3306", "-t", "30", "--","java", "-jar", "creditlimits-0.0.1-SNAPSHOT.jar"]
+
+  creditlimits-ui:
+    build: ./creditlimitsui/
+    container_name: creditlimitsui
+    restart: always
+    ports:
+      - "8090:8090"
+
+  mysql:
+    build: ./mysqldbmodule/
+    container_name: mysqldb
+    restart: always
+    ports:
+      - "3306:3306"
