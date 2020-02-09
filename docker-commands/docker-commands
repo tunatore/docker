@@ -1,0 +1,29 @@
+$ docker container ls
+$ docker container stop webserver
+$ docker container ls -a
+$ docker container rm webserver
+$ docker image ls
+$ docker image rm nginx
+
+docker run hello-world
+
+tunas-MacBook-Pro:~ tuna$ docker container ls
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+tunas-MacBook-Pro:~ tuna$ docker container ls -a
+CONTAINER ID        IMAGE               COMMAND             CREATED              STATUS                          PORTS               NAMES
+aca6ad627c47        hello-world         "/hello"            About a minute ago   Exited (0) About a minute ago
+
+$ docker run --detach --publish=80:80 --name=webserver nginx
+
+$ docker container ls
+$ docker container stop webserver
+$ docker container ls -a
+$ docker container rm webserver
+$ docker image ls
+$ docker image rm nginx
+
+cd doodle/cheers2019 && docker build -t tunatore/cheers2019 .
+
+docker run -it --rm tunatore/cheers2019
+
+docker login && docker push tunatore/cheers2019
