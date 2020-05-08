@@ -12,15 +12,25 @@ docker container ls -a
 docker container ls -aq
 docker container ls -a -s
 
-#remove container
-docker container rm CONTAINER_ID
+#list only active containers
+docker ps
 
-#remove all stoped containers
+#list all containers
+docker ps -a
+
+#remove container
+docker container rm container-id|container-name
+
+#remove all containers
+docker rm -f $(docker ps-aq)
+
+#remove all stopped containers
 docker container prune
 docker container rm $(docker container ls -aq)
+docker rm $(docker ps -q -f "status=exited")
 
 #stop a container
-docker container stop CONTAINER_ID
+docker container stop container-id|container-name
 
 #stop all containers
 docker container stop $(docker container ls -aq)
@@ -36,9 +46,9 @@ docker image rm IMAGE_ID
 docker image prune
 
 #container
-docker container inspect CONTAINER_ID
-docker container stop CONTAINER_ID
-docker container kill CONTAINER_ID
+docker container inspect container-id|container-name
+docker container stop container-id|container-name
+docker container kill container-id|container-name
 
 #interactive container
 docker container run -i -t --rm ubuntu
@@ -50,7 +60,7 @@ docker run -dit ubuntu
 docker container run -d my_image
 
 #attach to a container
-docker attach CONTAINER_ID
+docker attach container-id|container-name
 
 #run a command in a container
 docker exec -it 15cf92d2a9f6 echo "test"
