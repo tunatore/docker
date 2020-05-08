@@ -1,0 +1,56 @@
+#docker build a image from docker file
+docker build .
+
+#docker build with an argument
+docker build --build-arg variable=argument
+
+# remove all containers, images and networks
+docker system prune
+
+#list all containers
+docker container ls -a
+docker container ls -aq
+docker container ls -a -s
+
+#remove container
+docker container rm CONTAINER_ID
+
+#remove all stoped containers
+docker container prune
+docker container rm $(docker container ls -aq)
+
+#stop a container
+docker container stop CONTAINER_ID
+
+#stop all containers
+docker container stop $(docker container ls -aq)
+
+#kill all running containers
+docker container kill $(docker ps -q)
+
+#docker list images
+docker image ls
+
+#docker remove images
+docker image rm IMAGE_ID
+docker image prune
+
+#container
+docker container inspect CONTAINER_ID
+docker container stop CONTAINER_ID
+docker container kill CONTAINER_ID
+
+#interactive container
+docker container run -i -t --rm ubuntu
+
+#docker run container in detached
+docker run -dit ubuntu
+
+#detached container
+docker container run -d my_image
+
+#attach to a container
+docker attach CONTAINER_ID
+
+#run a command in a container
+docker exec -it 15cf92d2a9f6 echo "test"
