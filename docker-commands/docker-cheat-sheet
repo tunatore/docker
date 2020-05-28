@@ -21,6 +21,9 @@ docker ps -a
 #remove container
 docker container rm container-id|container-name
 
+#remove existed containers
+docker rm $(docker ps -q -f "status=exited")
+
 #remove all containers
 docker rm -f $(docker ps-aq)
 
@@ -64,3 +67,9 @@ docker attach container-id|container-name
 
 #run a command in a container
 docker exec -it 15cf92d2a9f6 echo "test"
+
+#docker ps
+docker ps -a | less -S
+
+#get container ip
+docker inspect --format '{{.NetworkSettings.IPAddress}}' <containerId>
